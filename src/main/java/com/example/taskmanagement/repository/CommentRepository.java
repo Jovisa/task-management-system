@@ -14,7 +14,7 @@ import java.util.List;
 public interface CommentRepository extends JpaRepository<Comment, Integer> {
 
     @Query("""
-                SELECT new taskmanagement.dto.comment.CommentResponse(
+                SELECT taskmanagement.dto.comment.CommentResponse.from(
                     c.id, c.task.id, c.text, c.author
                 )
                 FROM Comment c

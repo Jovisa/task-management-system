@@ -14,7 +14,7 @@ public record TaskResponseWithComments(
         String assignee,
         Long totalComments
 ) {
-    public TaskResponseWithComments(
+    public static TaskResponseWithComments from(
             Integer id,
             String title,
             String description,
@@ -23,6 +23,14 @@ public record TaskResponseWithComments(
             String assignee,
             Long totalComments
     ) {
-        this(id != null ? String.valueOf(id) : null, title, description, status, author, assignee, totalComments);
+        return new TaskResponseWithComments(
+                id != null ? String.valueOf(id) : null,
+                title,
+                description,
+                status,
+                author,
+                assignee,
+                totalComments
+        );
     }
 }

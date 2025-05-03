@@ -26,7 +26,7 @@ public interface TaskRepository extends
     List<Task> findAllByOptionalAuthorAndAssignee(@Param("author") String author, @Param("assignee") String assignee);
 
     @Query("""
-                SELECT new taskmanagement.dto.task.TaskResponseWithComments(
+                SELECT taskmanagement.dto.task.TaskResponseWithComments.from(
                     t.id,
                     t.title,
                     t.description,

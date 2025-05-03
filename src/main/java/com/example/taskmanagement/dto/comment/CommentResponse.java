@@ -11,7 +11,12 @@ public record CommentResponse(
         String text,
         String author
 ) {
-    public CommentResponse(Integer id, Integer taskId, String text, String author) {
-        this(String.valueOf(id), String.valueOf(taskId), text, author);
+    public static CommentResponse from(Integer id, Integer taskId, String text, String author) {
+        return new CommentResponse(
+                id != null ? String.valueOf(id) : null,
+                taskId != null ? String.valueOf(taskId) : null,
+                text,
+                author
+        );
     }
 }
