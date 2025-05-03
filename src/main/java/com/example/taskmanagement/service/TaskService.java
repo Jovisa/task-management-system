@@ -16,6 +16,7 @@ import com.example.taskmanagement.repository.AppUserRepository;
 import com.example.taskmanagement.repository.CommentRepository;
 import com.example.taskmanagement.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,7 @@ import static com.example.taskmanagement.util.Constants.NO_ASSIGNEE;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class TaskService {
 
     private final TaskMapper taskMapper;
@@ -40,6 +42,7 @@ public class TaskService {
 
     public TaskResponse createTask(TaskRequest request, String username) {
         Task savedTask = taskRepository.save(taskMapper.toEntity(request, username));
+        log.debug("Task [{}] created by user [{}]", savedTask, username);
         return taskMapper.toResponse(savedTask);
     }
 
@@ -71,13 +74,16 @@ public class TaskService {
                 .orElseThrow(() -> new TaskNotFoundException("Task not found, taskId is invalid"));
 
         if (!task.getAuthor().equals(userEmail)) {
+            log.warn("Access denied: User [{}] is not the author of task [{}]", userEmail, taskId);
             throw new AccessDeniedException("You are not the author of this task");
         }
         if (assigneeUserNotExists(assigneeEmail)) {
+            log.warn("Assignment failed: User [{}] does not exist", assigneeEmail);
             throw new UserNotFoundException("Trying to assign task to non existing user");
         }
 
         task.setAssignee(assigneeEmail);
+        log.info("Task [{}] assigned to [{}] by [{}]", taskId, assigneeEmail, userEmail);
         return taskMapper.toResponse(taskRepository.save(task));
     }
 

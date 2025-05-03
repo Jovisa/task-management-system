@@ -5,12 +5,14 @@ import com.example.taskmanagement.entity.AppUser;
 import com.example.taskmanagement.exception.EmailNotUniqueException;
 import com.example.taskmanagement.repository.AppUserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class RegistrationService {
 
     private final AppUserRepository userRepository;
@@ -18,6 +20,7 @@ public class RegistrationService {
 
     public AppUser register(RegistrationRequest request) {
         if (userRepository.existsByEmailIgnoreCase(request.email())) {
+            log.warn("Registration failed: Email already taken -> {}", request.email());
             throw new EmailNotUniqueException("Email already taken");
         }
 
