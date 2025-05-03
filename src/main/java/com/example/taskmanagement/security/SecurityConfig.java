@@ -33,14 +33,21 @@ public class SecurityConfig {
                 .httpBasic(Customizer.withDefaults()) // enable basic HTTP authentication
                 .oauth2ResourceServer(oauth -> oauth.jwt(Customizer.withDefaults()))
                 .authorizeHttpRequests(auth -> auth
+                        // 🔓 Public endpoints
+                        .requestMatchers(
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**",
+                                "/swagger-ui.html",
+                                "/error", // expose the /error endpoint
+                                "/actuator/shutdown", // required for tests?
+                                "/h2-console/**", // expose H2 console
+                                "/api/accounts" // registration
+                        ).permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/auth/token").authenticated()
                         .requestMatchers("/api/tasks/*/*").authenticated()
                         .requestMatchers(HttpMethod.POST, "/api/tasks").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/tasks").authenticated()
-                        .requestMatchers(HttpMethod.POST, "/api/accounts").permitAll()
-                        .requestMatchers("/error").permitAll() // expose the /error endpoint
-                        .requestMatchers("/actuator/shutdown").permitAll() // required for tests
-                        .requestMatchers("/h2-console/**").permitAll() // expose H2 console
+                        .anyRequest().authenticated()
                 )
                 .csrf(AbstractHttpConfigurer::disable) // allow modifying requests from tests
                 .sessionManagement(sessions ->

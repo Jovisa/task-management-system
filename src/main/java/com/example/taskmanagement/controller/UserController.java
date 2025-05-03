@@ -1,5 +1,6 @@
 package com.example.taskmanagement.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -22,12 +23,14 @@ public class UserController {
     private final RegistrationService registrationService;
     private final JwtService jwtService;
 
+    @Operation(summary = "Register new user", description = "Public endpoint — no authentication required")
     @PostMapping("/accounts")
     public ResponseEntity<?> register(@Valid @RequestBody RegistrationRequest request) {
         AppUser user = registrationService.register(request);
         return ResponseEntity.ok(user); //todo refactor -> return dto, or just status
     }
 
+    @Operation(description = "Basic Auth required to generate Javascript Web Token")
     @PostMapping("/auth/token")
     public ResponseEntity<JwtResponse> getToken(Authentication authentication) {
         JwtResponse jwtResponse = jwtService.getToken(authentication);
