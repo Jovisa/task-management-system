@@ -42,6 +42,9 @@ system that allows users to create, update, and manage tasks.
 
 > GET /api/tasks/{id}/comments — Get task comments
 
+> ℹ️ `POST /api/accounts` — Public endpoint for user registration  
+> 🔐 All other endpoints require a valid JWT token
+
 ## API Documentation
 
 Once the application is running, you can access the Swagger UI in your browser at:
