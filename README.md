@@ -25,32 +25,6 @@ system that allows users to create, update, and manage tasks.
    ./gradlew bootRun
 
 ```
-## 🧪 API Overview
-> POST /api/accounts — Register new user (public)
-
-> POST /api/auth/token — Get JWT token (requires basic auth)
-
-> POST /api/tasks — Create a task (authenticated)
-
-> PUT /api/tasks/{id}/assign — Assign task to user (author only)
-
-> PUT /api/tasks/{id}/status — Change task status (author or assignee)
-
-> GET /api/tasks?author=email&assignee=email — Filter tasks
-
-> POST /api/tasks/{id}/comments — Add comment
-
-> GET /api/tasks/{id}/comments — Get task comments
-
-> ℹ️ `POST /api/accounts` — Public endpoint for user registration  
-> 🔐 All other endpoints require a valid JWT token
-
-## API Documentation
-
-Once the application is running, you can access the Swagger UI in your browser at:
-
-- [/swagger-ui.html](http://localhost:8080/swagger-ui.html)
-- [/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
 
 
 ## 🧪 API Overview (Selected Endpoints)
