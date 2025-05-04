@@ -25,6 +25,22 @@ system that allows users to create, update, and manage tasks.
    ./gradlew bootRun
 
 ```
+## 🧪 API Overview
+> POST /api/accounts — Register new user (public)
+
+> POST /api/auth/token — Get JWT token (requires basic auth)
+
+> POST /api/tasks — Create a task (authenticated)
+
+> PUT /api/tasks/{id}/assign — Assign task to user (author only)
+
+> PUT /api/tasks/{id}/status — Change task status (author or assignee)
+
+> GET /api/tasks?author=email&assignee=email — Filter tasks
+
+> POST /api/tasks/{id}/comments — Add comment
+
+> GET /api/tasks/{id}/comments — Get task comments
 
 ## API Documentation
 
