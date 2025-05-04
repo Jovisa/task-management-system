@@ -52,8 +52,23 @@ Once the application is running, you can access the Swagger UI in your browser a
 - [/swagger-ui.html](http://localhost:8080/swagger-ui.html)
 - [/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
 
-> ℹ️ `POST /api/accounts` — Public endpoint for user registration  
-> 🔐 All other endpoints require a valid JWT token
+
+## 🧪 API Overview (Selected Endpoints)
+
+| Method | Endpoint                                 | Description                             | Access           |
+|--------|------------------------------------------|-----------------------------------------|------------------|
+| POST   | `/api/accounts`                          | Register new user                       | Public           |
+| POST   | `/api/auth/token`                        | Get JWT token                           | Basic Auth       |
+| POST   | `/api/tasks`                             | Create a task                           | Authenticated    |
+| PUT    | `/api/tasks/{id}/assign`                 | Assign task to user                     | Author only      |
+| PUT    | `/api/tasks/{id}/status`                 | Change task status                      | Author/Assignee  |
+| GET    | `/api/tasks?author=email&assignee=email`| Filter tasks by author and/or assignee  | Authenticated    |
+| POST   | `/api/tasks/{id}/comments`               | Add comment to a task                   | Authenticated    |
+| GET    | `/api/tasks/{id}/comments`               | Get comments for a task                 | Authenticated    |
+
+➡️ Full interactive documentation (Once the application is running):
+- [/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+- [/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
 
 ## 🔐 Authentication
 
