@@ -20,7 +20,7 @@ import com.example.taskmanagement.service.RegistrationService;
 @RequestMapping("/api")
 @RequiredArgsConstructor
 @Slf4j
-public class UserController {
+public class AuthController {
 
     private final RegistrationService registrationService;
     private final JwtService jwtService;
