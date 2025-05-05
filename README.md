@@ -18,7 +18,7 @@ system that allows users to create, update, and manage tasks.
 2. **Run the app**
    ```bash
    ./gradlew bootRun
-
+   ```
 
 
 
