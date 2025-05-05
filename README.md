@@ -7,24 +7,19 @@ system that allows users to create, update, and manage tasks.
 
 - Java 17
 - Spring Boot
-- Spring Security (JWT)
-- Spring Data JPA (Hibernate)
-- H2 (in-memory database for development)
 - Gradle (build tool)
-- Swagger / OpenAPI 3 (API docs)
+- H2 (in-memory database for development)
 
 
 ## ⚙️ Getting Started
 
 1. **Clone the repo**
-   ```bash
-   git clone https://github.com/your-username/task-management-system.git
-   cd task-management-system
+
 2. **Run the app**
-```
+   ```bash
    ./gradlew bootRun
 
-```
+
 
 
 ## 🧪 API Overview (Selected Endpoints)
@@ -43,6 +38,8 @@ system that allows users to create, update, and manage tasks.
 ➡️ Full interactive documentation (Once the application is running):
 - [/swagger-ui.html](http://localhost:8080/swagger-ui.html)
 - [/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
+
+
 
 ## 🔐 Authentication
 
